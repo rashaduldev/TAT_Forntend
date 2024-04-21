@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDNhqo2NpLtCKO1RsB_odiWVBNRXQlMGJU",
-  authDomain: "stay-vista-c9115.firebaseapp.com",
-  projectId: "stay-vista-c9115",
-  storageBucket: "stay-vista-c9115.appspot.com",
-  messagingSenderId: "848996575058",
-  appId: "1:848996575058:web:b2d7bd8179f4f197047c8b"
+  apiKey: "AIzaSyBiuOP1HcSei_3-DXPdWjvZs9XZRRWOqE8",
+  authDomain: "tat-bd.firebaseapp.com",
+  projectId: "tat-bd",
+  storageBucket: "tat-bd.appspot.com",
+  messagingSenderId: "623398732215",
+  appId: "1:623398732215:web:de08ba497687f74e312832"
 };
 
 // Initialize Firebase

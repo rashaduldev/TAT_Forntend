@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import useAuth from './../../hooks/useAuth';
 
 const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const { createUser, updateUserProfile } = useAuth();
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -54,7 +59,67 @@ const SignUp = () => {
                 data-temp-mail-org='0'
               />
             </div>
-            <div>
+            <div className="form-control relative">
+            <div className='flex justify-between'>
+                <label htmlFor='password' className='text-sm mb-2'>
+                  Password
+                </label>
+              </div>
+                  <input
+                    // type={!showPassword ? "password" : "text"}
+                    // name="password"
+                    // {...register("password", {
+                    //   required: true,
+                    //   minLength: 6,
+                    //   maxLength: 99,
+                      // eslint-disable-next-line no-useless-escape
+                    //   pattern:
+                    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+                    // })}
+                    type='password'
+                    name='password'
+                    autoComplete='new-password'
+                    id='password'
+                    required
+                    placeholder='*******'
+                    className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                  />
+                  {/* {errors.password?.type === "required" && (
+                    <p className="text-red-600 mt-2">Password is required</p>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <p className="text-red-600 mt-2">
+                      Please minimum enter 6 charecter
+                    </p>
+                  )}
+                  {errors.password?.type === "max" && (
+                    <p className="text-red-600">
+                      Please maximum enter 20 charecter
+                    </p>
+                  )}
+                  {errors.password?.type === "pattern" && (
+                    <p className="text-red-600">
+                      Please enter at least a symbol, upper and lower case
+                      letters and a number
+                    </p>
+                  )} */}
+                  <div
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute top-[37px] right-3"
+                  >
+                    {showPassword ? (
+                      <button>
+                        {" "}
+                        <FaEye></FaEye>
+                      </button>
+                    ) : (
+                      <button>
+                        <FaEyeSlash></FaEyeSlash>
+                      </button>
+                    )}
+                  </div>
+                </div>
+            {/* <div>
               <div className='flex justify-between'>
                 <label htmlFor='password' className='text-sm mb-2'>
                   Password
@@ -69,7 +134,7 @@ const SignUp = () => {
                 placeholder='*******'
                 className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
               />
-            </div>
+            </div> */}
           </div>
 
           <div>
