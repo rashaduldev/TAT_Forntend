@@ -27,7 +27,7 @@ const RoomDetails = () => {
         <title>{room?.title}</title>
       </Helmet>
       <div className=''>
-        <div className='flex flex-col gap-6'>{/* Header */}</div>
+        <div className='flex flex-col gap-6'>{id}{/* Header */}</div>
         <div className=''>{/* Room Info */}</div>
         {/* Calender */}
       </div>

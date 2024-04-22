@@ -7,6 +7,16 @@ import useAuth from './../../hooks/useAuth';
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, updateUserProfile } = useAuth();
+  const hadleSubmit=(data)=>{
+    data.preventDefault();
+    const form = data.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.image.value;
+    const password = form.password.value;
+    console.log(password, email);
+    console.log(name, photo);
+  }
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -18,6 +28,7 @@ const SignUp = () => {
           noValidate=''
           action=''
           className='space-y-6 ng-untouched ng-pristine ng-valid'
+          onSubmit={hadleSubmit}
         >
           <div className='space-y-4'>
             <div>
@@ -66,17 +77,7 @@ const SignUp = () => {
                 </label>
               </div>
                   <input
-                    // type={!showPassword ? "password" : "text"}
-                    // name="password"
-                    // {...register("password", {
-                    //   required: true,
-                    //   minLength: 6,
-                    //   maxLength: 99,
-                      // eslint-disable-next-line no-useless-escape
-                    //   pattern:
-                    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
-                    // })}
-                    type='password'
+                    type={showPassword?"text":"password"}
                     name='password'
                     autoComplete='new-password'
                     id='password'
@@ -84,25 +85,6 @@ const SignUp = () => {
                     placeholder='*******'
                     className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
                   />
-                  {/* {errors.password?.type === "required" && (
-                    <p className="text-red-600 mt-2">Password is required</p>
-                  )}
-                  {errors.password?.type === "minLength" && (
-                    <p className="text-red-600 mt-2">
-                      Please minimum enter 6 charecter
-                    </p>
-                  )}
-                  {errors.password?.type === "max" && (
-                    <p className="text-red-600">
-                      Please maximum enter 20 charecter
-                    </p>
-                  )}
-                  {errors.password?.type === "pattern" && (
-                    <p className="text-red-600">
-                      Please enter at least a symbol, upper and lower case
-                      letters and a number
-                    </p>
-                  )} */}
                   <div
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute top-[37px] right-3"
