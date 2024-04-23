@@ -3,20 +3,39 @@ import { FcGoogle } from 'react-icons/fc'
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import useAuth from './../../hooks/useAuth';
+import { imageUpload } from '../../api/utils';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser, updateUserProfile } = useAuth();
-  const hadleSubmit=(data)=>{
-    data.preventDefault();
-    const form = data.target;
+  const { createUser, updateUserProfile, signInWithGoogle} = useAuth();
+
+  const handleSubmit=async event=>{
+    event.preventDefault();
+    const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
-    const photo = form.image.value;
     const password = form.password.value;
-    console.log(password, email);
-    console.log(name, photo);
+    const image = form.image.files[0];
+    
+    
+    try{
+      // upload image
+      const imageData=await imageUpload(image);
+      // userRegistation
+      const result=await createUser(email,password)
+      console.log(result);
+      // save username and photoURL
+      await updateUserProfile(name,imageData?.data?.display_url)
+
+      // Save user data in Database
+
+      // get token
+
+    }catch(err){
+      console.log(err);
+    }
   }
+
   return (
     <div className='flex justify-center items-center min-h-screen'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -28,7 +47,7 @@ const SignUp = () => {
           noValidate=''
           action=''
           className='space-y-6 ng-untouched ng-pristine ng-valid'
-          onSubmit={hadleSubmit}
+          onSubmit={handleSubmit}
         >
           <div className='space-y-4'>
             <div>
